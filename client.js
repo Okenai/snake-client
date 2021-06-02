@@ -2,17 +2,17 @@ const net = require('net');
 
 const connect = function() {
   const conn = net.createConnection({
-    host: '192.168.0.139', //"135.23.222.131"
+    host: "135.23.222.131", // '192.168.0.139'
     port: 50542
   })
 
   conn.setEncoding("utf8");
   
   conn.on('connect', ()=>{
-    console.log('Successfully connected to game server')
+    conn.write('Name: KKR');
   })
   
-  conn.write('Name: KKR');
+  conn.write('Move: up');
 
   conn.on('data', (data)=>
   console.log(data));
@@ -21,6 +21,5 @@ const connect = function() {
 };
 
 console.log("Connecting ...");
-connect();
 
-module.exports = connect;
+module.exports = {connect};
