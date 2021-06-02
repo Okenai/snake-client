@@ -10,10 +10,13 @@ const connect = function() {
   
   conn.on('connect', ()=>{
     conn.write('Name: KKR');
-  })
-  
-  conn.write('Move: up');
+    
+    // setInterval(()=>{conn.write('Move: up')}, 50);
+    // setInterval(()=>{conn.write('Move: right')}, 100);
+    
 
+  })
+ 
   conn.on('data', (data)=>
   console.log(data));
 
@@ -22,4 +25,4 @@ const connect = function() {
 
 console.log("Connecting ...");
 
-module.exports = {connect};
+module.exports = connect;
