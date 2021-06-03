@@ -10,11 +10,6 @@ const connect = function() {
   
   conn.on('connect', ()=>{
     conn.write('Name: KKR');
-    
-    // setInterval(()=>{conn.write('Move: up')}, 50);
-    // setInterval(()=>{conn.write('Move: right')}, 100);
-    
-
   })
  
   conn.on('data', (data)=>
@@ -25,4 +20,24 @@ const connect = function() {
 
 console.log("Connecting ...");
 
-module.exports = connect;
+const setupInput = function () {
+  const stdin = process.stdin;
+  stdin.setRawMode(true);
+  stdin.setEncoding("utf8");
+  stdin.resume();
+  stdin.on("data", handleUserInput) 
+
+  return stdin;
+};
+
+const handleUserInput = function(input) {
+  if (input === '\u0003') {
+    process.exit();
+  }
+}
+  
+module.exports = {
+  connect,
+  setupInput,
+  handleUserInput
+};
